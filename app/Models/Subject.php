@@ -11,5 +11,8 @@ class Subject extends Model
 
     protected $fillable = ['code', 'name', 'units']; // Ensure these match your database columns
 
-    
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
 }

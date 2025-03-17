@@ -9,13 +9,15 @@ use App\Http\Controllers\StudentViewController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\GradeController;
+use App\Models\Grade;
+use App\Models\Subject;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 // Welcome Page (Public Route)
 Route::get('/', function () {
     return view('welcome');
 });
-
-
 
 // **Admin Dashboard (Only Admins Can Access)**
 Route::middleware(['auth', 'admin'])->group(function () {
@@ -33,9 +35,15 @@ Route::middleware(['auth', 'admin'])->group(function () {
 // **Student Dashboard (Only Students Can Access)**
 Route::middleware(['auth:student'])->group(function () {
     Route::get('/studentdashboard', function () {
-        return view('studentdashboard');
+        $student = Auth::guard('student')->user();
+        $grades = Grade::with('subject')
+            ->where('student_id', $student->id)
+            ->get();
+        $subjects = Subject::all();
+        $hasGrades = $grades->isNotEmpty();
+        
+        return view('studentdashboard', compact('grades', 'subjects', 'hasGrades'));
     })->name('studentdashboard');
-    Route::get('/student/grades', [StudentViewController::class, 'index'])->name('studentviews.index');
 });
 
 // **Profile Routes (For Both Admins & Students)**

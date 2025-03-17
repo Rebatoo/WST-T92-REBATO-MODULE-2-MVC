@@ -17,6 +17,7 @@
 
 <head>
   <meta charset="utf-8" />
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
   <link rel="icon" type="image/png" href="../assets/img/favicon.png">
@@ -184,21 +185,21 @@
                 <i class="material-symbols-rounded">account_circle</i>
               </a>
             </li>
-            <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
+            <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                @csrf
+                <a href="{{ route('logout') }}" 
+                   class="nav-link text-body font-weight-bold px-0"
+                   onclick="event.preventDefault(); this.closest('form').submit();">
+                    <i class="material-symbols-rounded me-2">logout</i>
+                    <span class="d-sm-inline d-none">Logout</span>
+                </a>
+            </form>
           </ul>
         </div>
       </div>
     </nav>
     <!-- End Navbar -->
-    @yield ('studentcontent')
+    @yield('studentcontent')
   </main>
   <div class="fixed-plugin">
     <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
