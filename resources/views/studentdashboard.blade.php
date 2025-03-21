@@ -56,7 +56,7 @@
       <!-- Student Information Card -->
      
 
-      <!-- Academic Information Card -->
+      <!-- Academic Information Card 
       <div class="row mb-4">
         <div class="col-12">
           <div class="card bg-gradient-warning">
@@ -68,7 +68,7 @@
           </div>
         </div>
       </div>
-
+-->
       <!-- Grades Table -->
       <div class="row">
         <div class="col-12">
