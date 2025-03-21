@@ -39,9 +39,17 @@ class AuthenticatedSessionController extends Controller
             return $this->redirectUser(Auth::guard('student')->user());
         }
 
+        // Check if the email exists in the students table
+        $student = \App\Models\Student::where('email', $credentials['email'])->first();
+        if ($student) {
+            return back()->withErrors([
+                'email' => 'Student account found but password is incorrect. Default password is: 12345678',
+            ]);
+        }
+
         // If authentication fails
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'No account found with these credentials. Please check your email or register first.',
         ]);
     }
 
