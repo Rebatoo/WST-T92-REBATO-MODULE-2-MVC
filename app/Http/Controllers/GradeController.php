@@ -43,9 +43,8 @@ class GradeController extends Controller
                                  ->first();
 
             if ($existingGrade) {
-                return redirect()->back()
-                    ->withErrors(['error' => 'Grade already exists for this student and subject'])
-                    ->withInput();
+                return redirect()->route('grades.index')
+                    ->with('warning', ' Grade already exists for this student and subject!');
             }
 
             // Create new grade
@@ -63,7 +62,7 @@ class GradeController extends Controller
             ]);
 
             return redirect()->route('grades.index')
-                ->with('success', 'Grade added successfully');
+                ->with('success', 'Grade created successfully! ');
 
         } catch (\Exception $e) {
             // Log the error
@@ -106,13 +105,15 @@ class GradeController extends Controller
             'grade' => $request->grade
         ]);
 
-        return redirect()->route('grades.index')->with('success', 'Grade updated successfully.');
+        return redirect()->route('grades.index')
+            ->with('info', 'Grade updated successfully! ');
     }
 
     // Delete a grade
     public function destroy($id)
     {
         Grade::findOrFail($id)->delete();
-        return redirect()->route('grades.index')->with('success', 'Grade deleted successfully.');
+        return redirect()->route('grades.index')
+            ->with('warning', 'Grade deleted successfully! ');
     }
 }
