@@ -57,6 +57,12 @@
                         <!-- Submit button -->
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
 
+                        <!-- Add Register Link -->
+                        <div class="text-center mt-3 mb-3">
+                            <span class="text-muted">Don't have an account?</span>
+                            <a href="{{ route('register') }}" class="text-primary fw-bold ms-1">Register</a>
+                        </div>
+
                         <div class="divider d-flex align-items-center my-4">
                             <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
                         </div>
