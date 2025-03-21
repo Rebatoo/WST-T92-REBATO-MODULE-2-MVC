@@ -47,7 +47,7 @@ class StudentController extends Controller {
             ]);
 
             return redirect()->route('students.index')
-                ->with('success', 'Student created successfully');
+                ->with('success', 'Student created successfully! ');
 
         } catch (\Exception $e) {
             Log::error('Student creation failed: ' . $e->getMessage());
@@ -96,7 +96,7 @@ class StudentController extends Controller {
             $student->update($data);
 
             return redirect()->route('students.index')
-                ->with('success', 'Student updated successfully');
+                ->with('info', 'Student updated successfully! ');
 
         } catch (\Exception $e) {
             Log::error('Student update failed: ' . $e->getMessage());
@@ -110,6 +110,7 @@ class StudentController extends Controller {
     
     public function destroy(Student $student) {
         $student->delete();
-        return redirect()->route('students.index')->with('success', 'Student deleted successfully!');
+        return redirect()->route('students.index')
+            ->with('warning', 'Student deleted successfully! ');
     }
 }

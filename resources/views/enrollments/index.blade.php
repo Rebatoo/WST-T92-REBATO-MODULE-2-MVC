@@ -2,6 +2,27 @@
 
 @section('content')
 <div class="container-fluid py-2">
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    
+    @if(session('info'))
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {{ session('info') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
+    @if(session('warning'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{ session('warning') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
     <div class="row">
         <div class="col-12">
             <div class="card my-4">
@@ -35,24 +56,21 @@
                                         <p class="text-xs font-weight-bold mb-0 px-3">{{ $enrollment->subject->name }}</p>
                                     </td>
                                     <td class="align-middle">
-                                    <button type="button" class="btn btn-link text-warning text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#editEnrollmentModal{{ $enrollment->id }}">
-                                        <i class="material-symbols-rounded">edit</i> Edit
-                                    </button>
+                                        <!-- Edit Button -->
+                                        <button type="button" class="btn btn-link text-info text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#editEnrollmentModal{{ $enrollment->id }}">
+                                            <i class="material-symbols-rounded">edit</i> Edit
+                                        </button>
 
-
+                                        <!-- Delete Form -->
                                         <form action="{{ route('enrollments.destroy', $enrollment->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0">
+                                            <button type="submit" class="btn btn-link text-warning text-gradient px-3 mb-0" onclick="return confirm('Are you sure you want to delete this enrollment?');">
                                                 <i class="material-symbols-rounded">delete</i> Delete
                                             </button>
                                         </form>
                                     </td>
                                 </tr>
-
-
-                                @include('enrollments.edit', ['enrollment' => $enrollment, 'subjects' => $subjects])
-                                
                                 @endforeach
                             </tbody>
                         </table>
@@ -66,6 +84,11 @@
 
 <!-- Include the modal here and pass the students and subjects -->
 @include('enrollments.create')
+
+<!-- Edit Modals - Move outside of the table -->
+@foreach($enrollments as $enrollment)
+    @include('enrollments.edit', ['enrollment' => $enrollment, 'subjects' => $subjects])
+@endforeach
 
 <style>
 /* Custom scrollbar styling */

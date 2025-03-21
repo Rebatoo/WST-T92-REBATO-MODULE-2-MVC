@@ -28,10 +28,8 @@ class SubjectController extends Controller
 
     public function store(SubjectRequest $request)
     {
-    
-
-        Subject::create($request->except('_token')); // ✅ Exclude `_token`
-    return redirect()->route('subjects.index')->with('success', 'Subject created successfully');
+        Subject::create($request->except('_token'));
+        return redirect()->route('subjects.index')->with('success', 'Subject created successfully! ');
     }
 
     public function edit($id)
@@ -48,13 +46,13 @@ class SubjectController extends Controller
         // Exclude '_token' and '_method' before updating
         $subject->update($request->except(['_token', '_method']));
     
-        return redirect()->route('subjects.index')->with('success', 'Subject updated successfully!');
+        return redirect()->route('subjects.index')->with('info', 'Subject updated successfully! ');
     }
 
     public function destroy($id)
     {
         $this->subjectService->deleteSubject($id);
-        return redirect()->route('subjects.index')->with('success', 'Subject deleted successfully!');
+        return redirect()->route('subjects.index')->with('warning', 'Subject deleted successfully! ');
     }
 }
 
