@@ -29,12 +29,13 @@
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-primary shadow-dark border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
                         <h6 class="text-white text-capitalize ps-3 mb-0">Subjects</h6>
-                        <button type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
-                            <i class="material-symbols-rounded">add</i> Add New Subject
-                        </button>
+                   
 
                     </div>
                 </div>
+                <button type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#addSubjectModal">
+                            <i class="material-symbols-rounded">add</i> Add New Subject
+                        </button>
                 <div class="card-body px-0 pb-2">
                     <!-- Subjects Table -->
                     <div class="table-responsive p-0" style="max-height: 550px; overflow-y: auto;">
@@ -63,14 +64,14 @@
                                         <button type="button" class="btn btn-link text-warning px-3 mb-0" 
                                             data-bs-toggle="modal" 
                                             data-bs-target="#editSubjectModal{{ $subject->id }}">
-                                            <i class="material-icons text-sm me-2">edit</i>Edit
+                                            <i class="material-symbols-rounded">edit</i> Edit
                                         </button>
                                         <form action="{{ route('subjects.destroy', $subject->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-link text-danger px-3 mb-0" 
+                                            <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0"
                                                 onclick="return confirm('Are you sure you want to delete this subject?');">
-                                                <i class="material-icons text-sm me-2">delete</i>Delete
+                                                <i class="material-symbols-rounded">delete</i> Delete
                                             </button>
                                         </form>
                                     </td>

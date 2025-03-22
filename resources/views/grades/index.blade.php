@@ -29,11 +29,12 @@
                 <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                     <div class="bg-gradient-primary shadow-dark border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
                         <h6 class="text-white text-capitalize ps-3 mb-0">Grades</h6>
-                        <button type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#addGradeModal">
-                            <i class="material-symbols-rounded">add</i> Add Grade
-                        </button>
+
                     </div>
                 </div>
+                <button type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#addGradeModal">
+                            <i class="material-symbols-rounded">add</i> Add Grade
+                        </button>
                 <div class="card-body px-0 pb-2">
                     <!-- Grades Table -->
                     <div class="table-responsive p-0" style="max-height: 550px; overflow-y: auto;">

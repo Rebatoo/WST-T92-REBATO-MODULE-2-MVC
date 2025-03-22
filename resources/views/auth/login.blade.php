@@ -1,4 +1,3 @@
-
 <div class="container-fluid py-2">
     <!-- Add Bootstrap CSS and JS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,6 +14,15 @@
             height: 1px;
             background: #eee;
         }
+        
+        /* Add these new styles */
+        .form-container {
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            background-color: white;
+        }
     </style>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
@@ -26,7 +34,7 @@
                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
                         class="img-fluid" alt="Phone image">
                 </div>
-                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1 form-container">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <!-- Email input -->

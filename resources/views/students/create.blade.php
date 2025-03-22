@@ -7,6 +7,24 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <style>
+            .form-control {
+                border: 2px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 10px 15px;
+                transition: border-color 0.3s ease;
+            }
+            
+            .form-control:focus {
+                border-color: #4CAF50;
+                box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.25);
+            }
+            
+            .form-control.is-invalid {
+                border-color: #dc3545;
+            }
+        </style>
+
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul class="mb-0">

@@ -30,12 +30,15 @@
                     <div class="bg-gradient-primary shadow-dark border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
                         <h6 class="text-white text-capitalize ps-3 mb-0">Enroll Students</h6>
                         <!-- Button to open modal -->
-                        <button type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#addEnrollmentModal">
+               
+                    </div>
+      
+                </div>
+                <button type="button" class="btn btn-success me-3 " data-bs-toggle="modal" data-bs-target="#addEnrollmentModal">
                             <i class="material-symbols-rounded">add</i> Enroll New Student
                         </button>
-                    </div>
-                </div>
                 <div class="card-body px-0 pb-2">
+                      
                     <!-- Enrollment Table -->
                     <div class="table-responsive p-0" style="max-height: 550px; overflow-y: auto;">
                         <table class="table align-items-center mb-0">
@@ -56,21 +59,28 @@
                                         <p class="text-xs font-weight-bold mb-0 px-3">{{ $enrollment->subject->name }}</p>
                                     </td>
                                     <td class="align-middle">
-                                        <!-- Edit Button -->
-                                        <button type="button" class="btn btn-link text-info text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#editEnrollmentModal{{ $enrollment->id }}">
-                                            <i class="material-symbols-rounded">edit</i> Edit
-                                        </button>
+                                    <button type="button" class="btn btn-link text-warning text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#editEnrollmentModal{{ $enrollment->id }}">
+                                    <i class="material-symbols-rounded">edit</i> Edit
+                                    </button>
 
-                                        <!-- Delete Form -->
+
                                         <form action="{{ route('enrollments.destroy', $enrollment->id) }}" method="POST" class="d-inline">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-link text-warning text-gradient px-3 mb-0" onclick="return confirm('Are you sure you want to delete this enrollment?');">
+                                            <button type="submit" class="btn btn-link text-danger text-gradient px-3 mb-0"
+                                                onclick="return confirm('Are you sure you want to delete this subject?');">
                                                 <i class="material-symbols-rounded">delete</i> Delete
                                             </button>
+                                          
+                                            
+                          
                                         </form>
                                     </td>
                                 </tr>
+
+
+                                @include('enrollments.edit', ['enrollment' => $enrollment, 'subjects' => $subjects])
+                                
                                 @endforeach
                             </tbody>
                         </table>
@@ -84,11 +94,6 @@
 
 <!-- Include the modal here and pass the students and subjects -->
 @include('enrollments.create')
-
-<!-- Edit Modals - Move outside of the table -->
-@foreach($enrollments as $enrollment)
-    @include('enrollments.edit', ['enrollment' => $enrollment, 'subjects' => $subjects])
-@endforeach
 
 <style>
 /* Custom scrollbar styling */

@@ -29,11 +29,12 @@
         <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
           <div class="bg-gradient-primary border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
             <h6 class="text-white text-capitalize ps-3 mb-0">Students</h6>
-            <button type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#addStudentModal">
-              <i class="material-symbols-rounded">add</i> Add Student
-            </button>
+            
           </div>
         </div>
+        <button type="button" class="btn btn-success me-3" data-bs-toggle="modal" data-bs-target="#addStudentModal">
+              <i class="material-symbols-rounded">add</i> Add Student
+            </button>
         <div class="card-body px-0 pb-2">
           @if ($errors->any())
             <div class="alert alert-danger">
